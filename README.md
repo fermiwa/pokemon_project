@@ -1,17 +1,20 @@
-# minha_aplicacao
+# 📱 Pokémon App - Flutter + Firebase
 
-A new Flutter project.
+Este é um projeto de estudo desenvolvido em Flutter para praticar operações de **CRUD** em tempo real utilizando o **Firebase Cloud Firestore**.
 
-## Getting Started
+## ✨ Funcionalidades
+* **Listagem (Read):** Lista de Pokémons atualizada em tempo real via `StreamBuilder`.
+* **Batalha (Update):** Sistema de ganho de XP que atualiza o nível do Pokémon diretamente no banco de dados.
+* **Remoção (Delete):** Opção de remover Pokémons da Pokédex.
 
-This project is a starting point for a Flutter application.
+## 🛠️ Tecnologias
+* [Flutter](https://flutter.dev)
+* [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore)
+* [PokeAPI](https://pokeapi.co/) (Sprites)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚀 Como rodar o projeto
+1. Certifique-se de ter o Flutter instalado.
+2. Clone o repositório.
+3. Execute `flutter pub get` para instalar as dependências.
+4. Configure seu próprio projeto no Firebase usando `flutterfire configure`.
+5. Execute o app com `flutter run`.
