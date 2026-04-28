@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart'; // Importante para reconhecer a classe Pokemon
+import 'home_screen.dart'; 
 import 'stat_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BattlePanel extends StatefulWidget {
 
@@ -99,13 +100,21 @@ class _BattlePanelState extends State<BattlePanel> {
           const SizedBox(height: 32),
 
           ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context, nivel);
+            onPressed: () async {
+              // manda novo nivel pro banco de dados
+              await FirebaseFirestore.instance
+                  .collection('pokemons')
+                  .doc(widget.docId) 
+                  .update({'level': nivel}); 
+
+              if (context.mounted) {
+                Navigator.pop(context);
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.grey.shade800,
               foregroundColor: Colors.white,
-              minimumSize: const Size(double.infinity, 50), // Botão largo
+              minimumSize: const Size(double.infinity, 50),
             ),
             child: const Text("ENCERRAR BATALHA"),
           ),
