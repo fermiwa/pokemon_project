@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Importante!
+import 'package:cloud_firestore/cloud_firestore.dart'; 
 import 'pokemon_screen.dart';
+import 'new_pokemon_screen.dart';
 
 // modelo que aceita os dados do firebase
 class Pokemon {
@@ -41,7 +42,17 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.redAccent,
         centerTitle: true,
       ),
-      // StreamBuilder lê os dados em tempo real
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.redAccent,
+        foregroundColor: Colors.white,
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => const NewPokemonScreen())
+          );
+        },
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: collection.snapshots(),
         builder: (context, snapshot) {
