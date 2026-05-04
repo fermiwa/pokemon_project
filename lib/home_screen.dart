@@ -2,27 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; 
 import 'pokemon_screen.dart';
 import 'new_pokemon_screen.dart';
+import 'pokemon.dart';
 
-// modelo que aceita os dados do firebase
-class Pokemon {
-  final String id; 
-  final String name;
-  final int spriteId;
-  final List<String> types; 
-  int level;
-  final List<String> moves;
-
-  String get spriteUrl => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$spriteId.png';
-
-  Pokemon({
-    required this.id,
-    required this.name,
-    required this.spriteId,
-    required this.types,
-    required this.level,
-    required this.moves,
-  });
-}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
