@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final p = Pokemon(
                 id: doc.id,
                 name: data['name'] ?? 'Sem nome',
-                spriteId: data['spriteId'] ?? 1,
+                spriteUrl: data['spriteUrl'] ?? '',
                 level: data['level'] ?? 1,
                 types: List<String>.from(data['types'] ?? []),
                 moves: ['Tackle', 'Growl'], 
