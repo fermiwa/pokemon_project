@@ -48,12 +48,9 @@ class _TrainerProfileScreenState extends State<TrainerProfileScreen> {
     final nome = _nameController.text.trim();
     
     await FirebaseFirestore.instance
-        .collection('usuarios') // coleção no firebase
-        .doc('fernanda') 
-        .set({
-          'name': nome, 
-          'avatarIndex': _selectedAvatar 
-        }, SetOptions(merge: true)); 
+    .collection('usuarios')
+    .doc('perfil_ativo')
+    .set({'name': nome, 'avatarIndex': _selectedAvatar}, SetOptions(merge: true));
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
