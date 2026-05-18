@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<Map<String, dynamic>?> _getTrainerData() async {
     final doc = await FirebaseFirestore.instance
       .collection('usuarios')
-      .doc('fernanda')
+      .doc('treinador')
       .get();
     return doc.data();
   }
@@ -37,16 +37,18 @@ class _HomeScreenState extends State<HomeScreen> {
               return const Text('Pokédex Cloud');
             }
 
-            final avatarIndex = snapshot.data!['avatarIndex'] ?? 1;
+            final name = snapshot.data!['name'] ?? 'treinador';
+            final avatarIndex = snapshot.data!['avatarIndex'] ?? 0;
 
             return Row(
               children: [
                 CircleAvatar(
                   backgroundColor: Colors.white24,
                   radius: 18,
-                  child: Image.asset('assets/trainers/trainer_$avatarIndex.png'),
+                  child: Image.asset('assets/trainers/trainer_${avatarIndex + 1}.png')
                 ),
                 const SizedBox(width: 10),
+                Text('Olá, $name', style: const TextStyle(fontSize: 18)),
               ],
             );
           },
