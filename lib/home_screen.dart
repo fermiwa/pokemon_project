@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'pokemon_screen.dart';
 import 'new_pokemon_screen.dart';
 import 'pokemon.dart';
+import 'trainer_profile_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -15,13 +16,53 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final collection = FirebaseFirestore.instance.collection('pokemons');
 
+  Future<Map<String, dynamic>?> _getTrainerData() async {
+    final doc = await FirebaseFirestore.instance
+      .collection('usuarios')
+      .doc('fernanda')
+      .get();
+    return doc.data();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pokédex Cloud'),
         backgroundColor: Colors.redAccent,
         centerTitle: true,
+        title: FutureBuilder<Map<String, dynamic>?>(
+          future: _getTrainerData(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData || snapshot.data == null) {
+              return const Text('Pokédex Cloud');
+            }
+
+            final avatarIndex = snapshot.data!['avatarIndex'] ?? 1;
+
+            return Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.white24,
+                  radius: 18,
+                  child: Image.asset('assets/trainers/trainer_$avatarIndex.png'),
+                ),
+                const SizedBox(width: 10),
+              ],
+            );
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TrainerProfileScreen()),
+              );
+              setState(() {});
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.redAccent,
